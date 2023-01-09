@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace _102210105
 {
-    internal class QL<T>
+    public class QL<T>
     {
-        private T[] list;
-        private int length;
+        public T[] list;
+        public int length;
+        public QL()
+        {
+            list = new T[0];
+            length = 0;
+        }
         public int GetLength() { return length; }
-        public int IndexOf(T item) 
+        public int IndexOf(ref T item) 
         {
             for(int i = 0; i < this.length; ++i)
             {
@@ -21,11 +26,11 @@ namespace _102210105
             }
             return -1;
         }
-        public T At(int index)
+        public ref T At(int index)
         {
-            return this.list[index];
+            return ref this.list[index];
         }
-        public void InsertAt(T item, int index)
+        public void Add(ref T item, int index)
         {
             T[] newList = new T[this.length + 1];
             for (int i = 0; i < index; ++i)
@@ -39,10 +44,6 @@ namespace _102210105
             }
             this.list = newList;
             this.length++;
-        }
-        public void Insert(T item)
-        {
-            InsertAt(item, length);
         }
         public void RemoveAt(int index)
         {
@@ -62,8 +63,7 @@ namespace _102210105
         {
             T[] newList = new T[0];
             this.list = newList;
+            length = 0;
         }
-       
-
     }
 }

@@ -10,16 +10,62 @@ namespace _102210105
     {
         static void Main(string[] args)
         {
-            QL<Sach> qlsach = new QL<Sach>();
-            Sach s = new Sach() { maSach = "103", tenSach = "Huy", namXB = 2022, soLuong = 10, tinhTrang = true };
-            qlsach.Insert(new Sach() { maSach = "101", tenSach = "Huy", namXB = 2022, soLuong = 10, tinhTrang = true });
-            qlsach.Insert(new Sach() { maSach = "102", tenSach = "NVA", namXB = 2022, soLuong = 10, tinhTrang = true });
-            qlsach.Insert(s);
-            for (int i = 0; i < qlsach.GetLength(); ++i)
+            QLSach qlsach = new QLSach();
+
+            while(true)
             {
-                Console.WriteLine(qlsach.At(i).maSach + ", " + qlsach.At(i).tenSach + ", " + qlsach.At(i).namXB + ", " + qlsach.At(i).soLuong + ", " + qlsach.At(i).tinhTrang);
+                int choice = 0;
+                while (true)
+                {
+                    Console.WriteLine("QUAN LY SACH");
+                    Console.WriteLine("1. Them sach");
+                    Console.WriteLine("2. Xoa sach");
+                    Console.WriteLine("3. Tim kiem sach");
+                    Console.WriteLine("4. Cap nhat sach");
+                    Console.WriteLine("5. Sap xep sach");
+                    Console.WriteLine("6. Hien tat ca sach");
+                    Console.WriteLine("7. Thoat");
+
+                    Console.Write("Nhap lua chon: ");
+                    choice = Int32.Parse(Console.ReadLine());
+                    if (choice < 1 || choice > 7)
+                    {
+                        Console.WriteLine("Lua chon khong hop le");
+                    } else
+                    {
+                        break;
+                    }
+                }
+                if(choice == 1)
+                {
+                    qlsach.Add();
+                } else if(choice == 2)
+                {
+                    qlsach.RemoveAt();
+                    Console.ReadKey(true);
+                } else if(choice == 3)
+                {
+                    qlsach.Search();
+                    Console.ReadKey(true);
+                }
+                else if(choice == 4)
+                {
+                    qlsach.Update();
+                    Console.ReadKey(true);
+                }
+                else if(choice == 5)
+                {
+                    qlsach.Sort();
+                    Console.ReadKey(true);
+                } else if(choice == 6)
+                {
+                    qlsach.Show();
+                    Console.ReadKey(true);
+                } else
+                {
+                    break;
+                }
             }
-            Console.WriteLine(qlsach.IndexOf(s));
         }
     }
 }
